@@ -9,11 +9,11 @@
 import UIKit
 
 final class ViewController: UIViewController {
+    @IBOutlet private weak var tableView: UITableView!
     
     fileprivate var people = [Person]() {
         didSet {
-            // TODO: Reload table view here
-            print("Reload table view")
+            tableView.reloadData()
         }
     }
 
@@ -22,16 +22,47 @@ final class ViewController: UIViewController {
         loadTestData()
     }
     
+    // MARK: - Data Loading
+    
     private func loadTestData() {
+        hideErrorState()
+        
         DataService.getTestData { [weak self] (people, error) in
             guard let self = self else { return }
+            
             if let people = people {
                 self.people = people
             } else if let error = error {
                 print("Error loading test data: \(error.localizedDescription)")
-                // TODO: Show error state
+                self.people = []
+                self.showErrorState()
             }
         }
+    }
+    
+    // MARK: - Error State
+    
+    private func showErrorState() {
+        
+    }
+    
+    private func hideErrorState() {
+        
+    }
+}
+
+// MARK: - UITableViewDataSource
+
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return people.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PersonTableViewCell.self), for: indexPath) as! PersonTableViewCell
+        let person = people[indexPath.row]
+        cell.setup(withPerson: person)
+        return cell
     }
 }
 

@@ -33,18 +33,26 @@ struct DataService {
     /// - Parameter completion: Array of Person objects and/or any Error from the request
     static func getTestData(completion: @escaping ([Person]?, Error?) -> Void) {
         guard let url = URL(string: urlString) else {
-            completion(nil, DataServiceErrors.urlError)
+            DispatchQueue.main.async {
+                completion(nil, DataServiceErrors.urlError)
+            }
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 let people = try? JSONDecoder().decode([Person].self, from: data)
-                completion(people, nil)
+                DispatchQueue.main.async {
+                    completion(people, nil)
+                }
             } else if let error = error {
-                completion(nil, error)
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
             } else {
-                completion(nil, DataServiceErrors.unknownError)
+                DispatchQueue.main.async {
+                    completion(nil, DataServiceErrors.unknownError)
+                }
             }
         }
         

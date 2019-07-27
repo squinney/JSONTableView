@@ -14,6 +14,7 @@
 		DCFCD26B22ECAF4B0071E4BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCFCD26922ECAF4B0071E4BC /* LaunchScreen.storyboard */; };
 		DCFCD27322ECB0CF0071E4BC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCD27222ECB0CF0071E4BC /* DataService.swift */; };
 		DCFCD27522ECB4400071E4BC /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCD27422ECB4400071E4BC /* Person.swift */; };
+		DCFCD27822ECB8400071E4BC /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCD27722ECB8400071E4BC /* PersonTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		DCFCD26C22ECAF4B0071E4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCFCD27222ECB0CF0071E4BC /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		DCFCD27422ECB4400071E4BC /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		DCFCD27722ECB8400071E4BC /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +62,23 @@
 			children = (
 				DCFCD26022ECAF4A0071E4BC /* AppDelegate.swift */,
 				DCFCD26222ECAF4A0071E4BC /* ViewController.swift */,
-				DCFCD27222ECB0CF0071E4BC /* DataService.swift */,
-				DCFCD27422ECB4400071E4BC /* Person.swift */,
+				DCFCD27722ECB8400071E4BC /* PersonTableViewCell.swift */,
+				DCFCD27622ECB8220071E4BC /* Data */,
 				DCFCD26422ECAF4A0071E4BC /* Main.storyboard */,
 				DCFCD26722ECAF4B0071E4BC /* Assets.xcassets */,
 				DCFCD26922ECAF4B0071E4BC /* LaunchScreen.storyboard */,
 				DCFCD26C22ECAF4B0071E4BC /* Info.plist */,
 			);
 			path = JSONTableView;
+			sourceTree = "<group>";
+		};
+		DCFCD27622ECB8220071E4BC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DCFCD27222ECB0CF0071E4BC /* DataService.swift */,
+				DCFCD27422ECB4400071E4BC /* Person.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +155,7 @@
 				DCFCD27322ECB0CF0071E4BC /* DataService.swift in Sources */,
 				DCFCD26322ECAF4A0071E4BC /* ViewController.swift in Sources */,
 				DCFCD27522ECB4400071E4BC /* Person.swift in Sources */,
+				DCFCD27822ECB8400071E4BC /* PersonTableViewCell.swift in Sources */,
 				DCFCD26122ECAF4A0071E4BC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

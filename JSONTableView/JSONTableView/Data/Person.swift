@@ -15,3 +15,14 @@ struct Person {
 }
 
 extension Person: Codable {}
+
+// MARK: - String Formatting
+
+extension Person {
+    /// Formatted string for the Person's name
+    ///
+    /// - Returns: Person's name in the format "{fname} {lname}"
+    func formattedName() -> String {
+        return "\(fname) \(lname)"
+    }
+}
