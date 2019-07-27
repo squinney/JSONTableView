@@ -10,10 +10,12 @@ import UIKit
 
 final class ViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var errorLabel: UILabel!
     
     fileprivate var people = [Person]() {
         didSet {
-            tableView.reloadData()
+            reloadTableView()
         }
     }
 
@@ -25,17 +27,30 @@ final class ViewController: UIViewController {
     // MARK: - Data Loading
     
     private func loadTestData() {
+        tableView.alpha = 0.0
         hideErrorState()
+        activityIndicator.startAnimating()
         
         DataService.getTestData { [weak self] (people, error) in
             guard let self = self else { return }
+            defer { self.activityIndicator.stopAnimating() }
             
             if let people = people {
                 self.people = people
             } else if let error = error {
                 print("Error loading test data: \(error.localizedDescription)")
-                self.people = []
                 self.showErrorState()
+                self.people = []
+            }
+        }
+    }
+    
+    private func reloadTableView() {
+        tableView.reloadData()
+        if errorLabel.isHidden {
+            // No error, fade in the tableview
+            UIView.animate(withDuration: 0.3) {
+                self.tableView.alpha = 1.0
             }
         }
     }
@@ -43,11 +58,11 @@ final class ViewController: UIViewController {
     // MARK: - Error State
     
     private func showErrorState() {
-        
+        errorLabel.isHidden = false
     }
     
     private func hideErrorState() {
-        
+        errorLabel.isHidden = true
     }
 }
 
